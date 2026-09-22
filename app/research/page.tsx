@@ -6,11 +6,12 @@ export default function Research() {
     <>
       <h1 className="ph">Research</h1>
       <p className="lede" style={{ marginBottom: 36 }}>
-        I work on numerical optimal control for quadrotors, on formulations
-        that let a constraint bind only where it matters. Approach geometry and
-        actuator limits are critical near touchdown and slack far from it, and
-        an optimizer that enforces them over the whole horizon will fail to
-        solve from most initial conditions.
+        I work on trajectory optimization and numerical optimal control for
+        aerial vehicles: generating motion that respects the constraints a
+        vehicle actually has to fly, fast enough to re-solve online. How a
+        constraint is written often decides whether the problem is tractable at
+        all, and the planner that comes out of it still has to keep a vehicle
+        flying while a solve is in flight.
       </p>
 
       {research.map((t, i) => (
