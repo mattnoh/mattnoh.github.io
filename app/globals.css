@@ -1,26 +1,604 @@
-@import "tailwindcss";
+@import url('https://cdn.jsdelivr.net/gh/bitmaks/cm-web-fonts@latest/fonts.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   Register borrowed from haynec.github.io (AcademicPages, dark):
+   Computer Modern Sans, #414141 ground, warm-orange accent, cyan links,
+   fixed masthead, 250px author sidebar, wide content column.
+   ========================================================================== */
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --ground:  #34373b;
+  --rule:    #4a4e53;
+  --text:    #f2f2f0;
+  --dim:     #dfe2e4;
+  --faint:   #a2a7ab;
+  --accent:  #82b3cf;   /* one accent, links and active tab both */
+  --link:    #82b3cf;
+
+  --cm: "Computer Modern Sans", "Latin Modern Sans", -apple-system,
+        BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Computer Modern Sans ships only normal + bold and its stems go faint
+     below ~16px. Small text uses the system UI stack, which is hinted for
+     exactly these sizes. CM Sans keeps the body copy and every heading. */
+  --ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+        Arial, sans-serif;
+
+  --nav-h: 70px;
+  --side-w: 205px;
+  --shell: 1500px;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+* { box-sizing: border-box; }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--ground);
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  /* column layout so the footer lands in the same place on every tab
+     instead of riding up under short pages */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--ground);
+  color: var(--text);
+  font-family: var(--cm);
+  font-size: 18px;
+  line-height: 1.5;
 }
+
+/* ---- masthead ----------------------------------------------------------- */
+
+.masthead {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: var(--nav-h);
+  background: var(--ground);
+  border-bottom: 1px solid var(--rule);
+}
+
+.masthead .inner {
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+}
+
+.masthead .me {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text);
+  text-decoration: none;
+  margin-right: 12px;
+}
+
+.masthead nav {
+  display: flex;
+  gap: 28px;
+  font-size: 0.95rem;
+}
+
+.masthead nav a {
+  color: var(--dim);
+  text-decoration: none;
+}
+
+.masthead nav a:hover { color: var(--text); }
+
+/* ---- shell -------------------------------------------------------------- */
+
+.shell {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: 36px 24px 80px;
+  display: grid;
+  grid-template-columns: var(--side-w) minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+/* ---- author sidebar ----------------------------------------------------- */
+
+.author { position: sticky; top: calc(var(--nav-h) + 28px); }
+
+.author .avatar {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  display: block;
+  margin-bottom: 14px;
+}
+
+.author .nm {
+  font-weight: 700;
+  font-size: 1.125rem;
+  margin: 0 0 8px;
+}
+
+.author .role {
+  font-size: 0.875rem;    /* 14px */
+  line-height: 1.5;
+  color: var(--dim);
+  margin: 0 0 18px;
+}
+
+.author ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.875rem;    /* 14px */
+  line-height: 1.55;
+}
+
+.author li {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  margin-bottom: 9px;
+  color: var(--text);
+}
+
+.author li .ic {
+  width: 15px;
+  flex: 0 0 15px;
+  color: var(--dim);
+  text-align: center;
+  font-size: 0.8125rem;
+}
+
+.author li a { color: var(--text); text-decoration: none; }
+.author li a:hover { color: var(--link); text-decoration: underline; }
+
+@media (max-width: 900px) {
+  .shell { grid-template-columns: 1fr; gap: 32px; }
+  .author { position: static; }
+  .author .avatar { width: 128px; height: 128px; }
+}
+
+/* ---- content ------------------------------------------------------------ */
+
+.content { min-width: 0; }
+
+h1 {
+  font-size: 1.5625rem;   /* 28.1px, matching the reference */
+  font-weight: 700;
+  line-height: 1.3;
+  margin: 0 0 14px;
+  color: var(--text);
+}
+
+h1 .hl { color: var(--accent); }
+
+h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 34px 0 10px;
+  color: var(--text);
+}
+
+h3 {
+  font-size: 1.0625rem;
+  font-weight: 700;
+  margin: 0 0 4px;
+  color: var(--text);
+}
+
+p { margin: 0 0 14px; }
+p:last-child { margin-bottom: 0; }
+
+a { color: var(--link); text-decoration: underline; text-underline-offset: 0.15em; }
+a:hover { color: var(--text); }
+
+ul.plain { margin: 0 0 14px; padding-left: 1.4rem; }
+ul.plain li { margin-bottom: 7px; }
+ul.plain ul { margin: 7px 0 0; padding-left: 1.4rem; list-style: circle; }
+
+hr.sep { border: 0; border-top: 1px solid var(--rule); margin: 40px 0; }
+
+/* ---- nav active state --------------------------------------------------- */
+
+.masthead nav a.on {
+  color: var(--text);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 3px;
+}
+
+/* ---- page heading ------------------------------------------------------- */
+
+.ph {
+  font-size: 1.9375rem;   /* 31px — was 25px, too close to the 18px body */
+  font-weight: 700;
+  line-height: 1.22;
+  letter-spacing: -0.012em;
+  margin: 0 0 20px;
+  color: var(--text);
+}
+
+.lede { color: var(--text); max-width: 56rem; }
+
+/* ---- the figure at the top ---------------------------------------------- */
+
+.figure { margin: 0 0 26px; }
+
+.figure video,
+.figure img {
+  width: 100%;
+  display: block;
+  background: #fff;
+  border: 1px solid var(--rule);
+}
+
+.figure figcaption {
+  margin-top: 10px;
+  font-size: 0.875rem;
+  color: var(--dim);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* a grid of the target-motion clips */
+.clips {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 0 0 10px;
+}
+
+.clips video {
+  width: 100%;
+  display: block;
+  background: #fff;
+  border: 1px solid var(--rule);
+}
+
+.clips .cap {
+  font-size: 0.8125rem;
+  color: var(--faint);
+  margin-top: 4px;
+}
+
+@media (max-width: 640px) {
+  .clips { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* ---- research threads --------------------------------------------------- */
+
+.thread h2 { margin-top: 0; margin-bottom: 4px; }
+
+.thread .kind {
+  font-size: 0.8125rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 5px;
+}
+
+.thread .tscale {
+  font-size: 0.875rem;
+  color: var(--faint);
+  margin-top: -4px;
+}
+
+/* the problem statement is set apart from the approach */
+.thread .tprob {
+  border-left: 2px solid var(--rule);
+  padding-left: 16px;
+  color: var(--dim);
+}
+
+.thread .tlinks {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.thread .tlinks a {
+  font-size: 0.875rem;
+  color: var(--dim);
+  text-decoration: none;
+  border: 1px solid var(--rule);
+  padding: 5px 12px;
+}
+
+.thread .tlinks a:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+/* ---- references --------------------------------------------------------- */
+
+/* group titles get a rule so they read as headings, not as bold lines */
+h2.grp {
+  padding-bottom: 7px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--rule);
+}
+
+/* year hangs in its own column to the left of each entry */
+.ref {
+  display: grid;
+  grid-template-columns: 2.9rem 124px minmax(0, 1fr);
+  column-gap: 18px;
+  margin: 0 0 26px;
+}
+
+.ref .ryear {
+  font-size: 0.9375rem;
+  color: var(--faint);
+  line-height: 1.4;
+  padding-top: 1px;
+  font-feature-settings: "tnum";
+}
+
+/* first page of the paper, as a thumbnail */
+.ref .rthumb {
+  display: block;
+  width: 100%;
+  border: 1px solid var(--rule);
+  background: #fff;
+  transition: border-color 160ms ease;
+}
+
+.ref:hover .rthumb { border-color: var(--accent); }
+
+@media (max-width: 620px) {
+  .ref { grid-template-columns: 2.6rem 88px minmax(0, 1fr); column-gap: 12px; }
+}
+.ref .rt { font-weight: 700; line-height: 1.4; }
+.ref .ra, .ref .rv { font-size: 0.9375rem; color: var(--dim); line-height: 1.5; }
+.ref .rv em { font-style: italic; }
+.ref .also {
+  margin: 6px 0 0;
+  padding-left: 1.1rem;
+  font-size: 0.875rem;
+  color: var(--faint);
+  line-height: 1.5;
+}
+
+.ref .also li { margin-bottom: 3px; }
+
+.rlinks {
+  margin-top: 7px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.rlinks a {
+  font-size: 0.875rem;
+  color: var(--dim);
+  text-decoration: none;
+  border: 1px solid var(--rule);
+  padding: 3px 10px;
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.rlinks a:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ground);
+}
+
+.ref .tag {
+  display: inline-block;
+  margin-top: 4px;
+  font-size: 0.8125rem;
+  color: var(--accent);
+}
+
+/* ---- cv page ------------------------------------------------------------ */
+
+.cvhead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 18px;
+}
+
+.dl {
+  font-size: 0.875rem;
+  color: var(--accent);
+  text-decoration: none;
+  border: 1px solid var(--rule);
+  padding: 7px 14px;
+  white-space: nowrap;
+}
+
+.dl:hover { border-color: var(--accent); color: var(--accent); }
+
+.cvframe {
+  width: 100%;
+  height: 78vh;
+  min-height: 560px;
+  border: 1px solid var(--rule);
+  background: #fff;
+  display: block;
+}
+
+/* ---- compact rows ------------------------------------------------------- */
+
+.row { margin: 0 0 16px; }
+.row .d { font-size: 0.9375rem; color: var(--dim); }
+
+/* ---- footer ------------------------------------------------------------- */
+
+.foot {
+  flex-shrink: 0;
+  border-top: 1px solid var(--rule);
+  margin-top: 56px;
+  padding: 22px 0 28px;
+  font-size: 0.875rem;
+  color: var(--faint);
+}
+
+.foot .inner { max-width: var(--shell); margin: 0 auto; padding: 0 24px; }
+
+/* ==========================================================================
+   Motion. Everything here is CSS-only, respects prefers-reduced-motion,
+   and is short enough to feel like response rather than decoration.
+   ========================================================================== */
+
+/* 1. Cross-fade between tabs instead of a hard page swap (View Transitions) */
+@view-transition { navigation: auto; }
+
+::view-transition-old(root) { animation: vt-out 120ms ease both; }
+::view-transition-new(root) { animation: vt-in 220ms ease both; }
+
+@keyframes vt-out { to { opacity: 0; } }
+@keyframes vt-in  { from { opacity: 0; transform: translateY(6px); } }
+
+/* the sidebar shouldn't move when only the content changes */
+.author { view-transition-name: author; }
+.masthead { view-transition-name: masthead; }
+
+/* 2. Nav underline grows from the left rather than blinking on */
+.masthead nav a {
+  position: relative;
+  padding-bottom: 4px;
+  border-bottom: none;
+}
+
+.masthead nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 180ms cubic-bezier(.4,0,.2,1);
+}
+
+.masthead nav a:hover::after { transform: scaleX(1); opacity: 0.45; }
+.masthead nav a.on::after { transform: scaleX(1); opacity: 1; }
+.masthead nav a.on { color: var(--text); border-bottom: none; }
+
+/* 3. Inline links: underline thickens and lifts on hover */
+.content a, .author a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.16em;
+  transition: text-decoration-thickness 140ms ease,
+              text-underline-offset 140ms ease,
+              color 140ms ease;
+}
+
+.content a:hover, .author a:hover {
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.22em;
+}
+
+/* 4. Content rises in on load, staggered by block */
+@media (prefers-reduced-motion: no-preference) {
+  .content > * {
+    animation: rise 420ms cubic-bezier(.2,.6,.2,1) both;
+  }
+  .content > *:nth-child(1) { animation-delay: 0ms; }
+  .content > *:nth-child(2) { animation-delay: 45ms; }
+  .content > *:nth-child(3) { animation-delay: 90ms; }
+  .content > *:nth-child(4) { animation-delay: 135ms; }
+  .content > *:nth-child(n+5) { animation-delay: 180ms; }
+}
+
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+
+/* 5. Research entries respond to the pointer */
+.thread {
+  padding-left: 14px;
+  margin-left: -14px;
+  border-left: 2px solid transparent;
+  transition: border-color 200ms ease;
+}
+
+.thread:hover { border-left-color: var(--accent); }
+
+.thread .tprob { transition: border-color 200ms ease; }
+
+/* 6. The link chips fill rather than just change colour */
+.thread .tlinks a {
+  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+}
+
+.thread .tlinks a:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--ground);
+}
+
+/* honour the system setting */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  @view-transition { navigation: none; }
+}
+
+/* Photographic landing videos.
+   Always two across — never stacked — and broken out of the content column
+   to the right so they get the full width the page can give them. */
+.landing-videos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  margin: 0 0 30px;
+  width: 100%;
+  max-width: 1220px;   /* keeps them from ballooning on a wide screen */
+}
+
+.landing-videos video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1800 / 1072;
+  background: #222;
+  border: 1px solid var(--rule);
+}
+@media (max-width: 540px) {
+  .masthead .inner { gap: 16px; padding: 0 16px; }
+  .masthead .me { margin-right: 0; font-size: .875rem; }
+  .masthead nav { gap: 14px; font-size: .8125rem; }
+}
+
+/* ---- small text runs on the UI stack ------------------------------------ */
+
+.masthead nav,
+.author .role,
+.author ul,
+.ryear,
+.ref .ra,
+.ref .rv,
+.ref .also,
+.ref .tag,
+.rlinks a,
+.thread .kind,
+.thread .tscale,
+.thread .tlinks a,
+.row .d,
+.item .d,
+.foot {
+  font-family: var(--ui);
+  letter-spacing: 0;
+}
+
+/* the uppercase micro-labels carry a little more weight */
+.thread .kind { font-weight: 600; letter-spacing: 0.06em; }
