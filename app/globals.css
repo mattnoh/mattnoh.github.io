@@ -610,6 +610,23 @@ h2.grp {
   color: var(--dim);
 }
 
+/* Stop short trailing fragments. `pretty` keeps a last line from holding one
+   or two words; `balance` evens the lines of a heading, which is only sane on
+   short text. Ignored by browsers that do not support it. */
+p,
+figcaption,
+.ref .rt,
+.ref .ra,
+.ref .rv,
+.ref .also li,
+.thread .tprob {
+  text-wrap: pretty;
+}
+
+h1, h2, h3, .ph, .thread h2 {
+  text-wrap: balance;
+}
+
 
 /* Side by side they fall to ~159x95 px on a 375 px screen, which is unreadable. */
 @media (max-width: 720px) {
