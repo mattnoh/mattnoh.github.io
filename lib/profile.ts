@@ -58,7 +58,10 @@ export const journalPublications: Publication[] = [
         href: "https://doi.org/10.7746/jkros.2026.21.1.100",
       },
     ],
-    also: ["Korean patent application pending, Ref. KR07990 / PD26-154-N"],
+    also: [
+      "Presented at the 21st Korea Robotics Society Annual Conference (KRoC), Pyeongchang, February 2026, under the journal's simultaneous submission option",
+      "Korean patent application pending, Ref. KR07990 / PD26-154-N",
+    ],
   },
 ];
 
@@ -79,18 +82,6 @@ export const conferencePublications: Publication[] = [
         label: "Project page",
         href: "https://mattnoh.github.io/onlinereplanninglanding/",
       },
-    ],
-  },
-  {
-    id: "kroc-soc-landing",
-    authors: "SungJin Noh, JunGee Hong, and Kwang-Ki K. Kim",
-    title:
-      "Attitude-Aware Second-Order Conic-Constrained Trajectory Optimization for 6-DOF Quadrotor Precision Landing",
-    venue: "21st Korea Robotics Society Annual Conference (KRoC)",
-    detail: "Pyeongchang, Republic of Korea \u00b7 February 2026",
-    year: 2026,
-    also: [
-      "Presented under the society's simultaneous submission option; the full paper appears in the Journal of Korea Robotics Society",
     ],
   },
 ];
