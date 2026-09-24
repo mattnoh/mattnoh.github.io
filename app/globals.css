@@ -379,7 +379,9 @@ h2.grp {
   transition: border-color 160ms ease;
 }
 
-.ref:hover .rthumb { border-color: var(--accent); }
+.ref .rthumbcell a { display: block; text-decoration: none; }
+.ref:hover .rthumb,
+.ref .rthumbcell a:hover .rthumb { border-color: var(--accent); }
 
 @media (max-width: 620px) {
   .ref { grid-template-columns: 2.6rem 88px minmax(0, 1fr); column-gap: var(--s3); }
@@ -387,8 +389,12 @@ h2.grp {
 
 /* Below this the text column is squeezed under ~175 px and titles shred. */
 @media (max-width: 560px) {
-  .ref { grid-template-columns: minmax(0, 1fr); row-gap: var(--s1); }
-  .ref .rthumbcell { display: none; }
+  .ref {
+    grid-template-columns: 84px minmax(0, 1fr);
+    column-gap: var(--s3);
+    row-gap: var(--s2);
+  }
+  .ref .ryear { grid-column: 1 / -1; padding-top: 0; }
 }
 /* The masthead is sticky, so an anchored entry must clear it. */
 .ref[id] { scroll-margin-top: calc(var(--nav-h) + var(--s5)); }
@@ -399,7 +405,7 @@ h2.grp {
 .ref .rv em { font-style: italic; }
 .ref .also {
   margin: var(--s2) 0 0;
-  padding-left: 1.1rem;
+  padding-left: 0;
   font-size: 0.875rem;
   color: var(--faint);
   line-height: 1.5;

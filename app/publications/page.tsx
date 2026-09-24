@@ -10,9 +10,19 @@ function Ref({ pub }: { pub: Publication }) {
     <div className="ref" id={pub.id}>
       <div className="ryear">{pub.year}</div>
       <div className="rthumbcell">
-        {pub.thumb && (
-          <img className="rthumb" src={pub.thumb} alt="" loading="lazy" />
-        )}
+        {pub.thumb &&
+          (pub.links && pub.links.length > 0 ? (
+            <a
+              href={pub.links[0].href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${pub.title} — ${pub.links[0].label}`}
+            >
+              <img className="rthumb" src={pub.thumb} alt="" loading="lazy" />
+            </a>
+          ) : (
+            <img className="rthumb" src={pub.thumb} alt="" loading="lazy" />
+          ))}
       </div>
       <div className="rbody">
       <div className="rt">{pub.title}</div>
