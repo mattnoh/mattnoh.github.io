@@ -597,14 +597,6 @@ h2.grp {
   color: var(--dim);
 }
 
-.landing-videos .lv-note {
-  grid-column: 1 / -1;
-  margin-top: 2px;
-  font-size: 0.8125rem;
-  line-height: 1.55;
-  color: var(--faint);
-  max-width: 72ch;
-}
 
 /* Side by side they fall to ~159x95 px on a 375 px screen, which is unreadable. */
 @media (max-width: 720px) {

@@ -21,11 +21,6 @@ export default function LandingTimelapse() {
           driven by random accelerations.
         </figcaption>
       </div>
-      <figcaption className="lv-note">
-        Hardware experiments. Each clip keeps a snapshot every 0.2 s of flight,
-        so the whole approach reads in a single frame. The yellow ring follows
-        the quadrotor; the red marks where the state trigger activates.
-      </figcaption>
     </figure>
   );
 }
