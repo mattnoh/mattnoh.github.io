@@ -58,10 +58,7 @@ export const journalPublications: Publication[] = [
         href: "https://doi.org/10.7746/jkros.2026.21.1.100",
       },
     ],
-    also: [
-      "Presented at the 21st Korea Robotics Society Annual Conference (KRoC), Pyeongchang, February 2026, under the journal's simultaneous submission option",
-      "Korean patent application pending, Ref. KR07990 / PD26-154-N",
-    ],
+    also: ["Korean patent application pending, Ref. KR07990 / PD26-154-N"],
   },
 ];
 

@@ -576,7 +576,7 @@ h2.grp {
 .landing-videos {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px 10px;
+  gap: 10px;
   margin: 0 0 30px;
   width: 100%;
   max-width: 1220px;   /* keeps them from ballooning on a wide screen */
@@ -588,21 +588,6 @@ h2.grp {
   aspect-ratio: 1800 / 1072;
   background: #222;
   border: 1px solid var(--rule);
-}
-
-.landing-videos .lv-item figcaption {
-  margin-top: 7px;
-  font-size: 0.875rem;
-  line-height: 1.5;
-  color: var(--dim);
-}
-
-.landing-videos .lv-note {
-  grid-column: 1 / -1;
-  font-size: 0.8125rem;
-  line-height: 1.55;
-  color: var(--faint);
-  max-width: 68ch;
 }
 
 /* Side by side they fall to ~159x95 px on a 375 px screen, which is unreadable. */
