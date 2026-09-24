@@ -169,6 +169,12 @@ body {
   .author .avatar { width: 128px; height: 128px; }
 }
 
+/* On a phone the whole profile sits above every page, so shrink it. */
+@media (max-width: 560px) {
+  .shell { gap: 24px; padding: 24px 18px 64px; }
+  .author .avatar { width: 84px; height: 84px; }
+}
+
 /* ---- content ------------------------------------------------------------ */
 
 .content { min-width: 0; }
@@ -229,7 +235,7 @@ hr.sep { border: 0; border-top: 1px solid var(--rule); margin: 40px 0; }
   color: var(--text);
 }
 
-.lede { color: var(--text); max-width: 56rem; }
+.lede { color: var(--text); max-width: 72ch; }
 
 /* ---- the figure at the top ---------------------------------------------- */
 
@@ -360,6 +366,16 @@ h2.grp {
 @media (max-width: 620px) {
   .ref { grid-template-columns: 2.6rem 88px minmax(0, 1fr); column-gap: 12px; }
 }
+
+/* Below this the text column is squeezed under ~175 px and titles shred. */
+@media (max-width: 560px) {
+  .ref { grid-template-columns: minmax(0, 1fr); row-gap: 5px; }
+  .ref .rthumbcell { display: none; }
+}
+/* The masthead is sticky, so an anchored entry must clear it. */
+.ref[id] { scroll-margin-top: calc(var(--nav-h) + 24px); }
+.ref[id]:target .rt { box-shadow: inset 0 -0.6em 0 var(--mark, rgba(255, 214, 0, 0.28)); }
+
 .ref .rt { font-weight: 700; line-height: 1.4; }
 .ref .ra, .ref .rv { font-size: 0.9375rem; color: var(--dim); line-height: 1.5; }
 .ref .rv em { font-style: italic; }
@@ -560,7 +576,7 @@ h2.grp {
 .landing-videos {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: 18px 10px;
   margin: 0 0 30px;
   width: 100%;
   max-width: 1220px;   /* keeps them from ballooning on a wide screen */
@@ -572,6 +588,26 @@ h2.grp {
   aspect-ratio: 1800 / 1072;
   background: #222;
   border: 1px solid var(--rule);
+}
+
+.landing-videos .lv-item figcaption {
+  margin-top: 7px;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: var(--dim);
+}
+
+.landing-videos .lv-note {
+  grid-column: 1 / -1;
+  font-size: 0.8125rem;
+  line-height: 1.55;
+  color: var(--faint);
+  max-width: 68ch;
+}
+
+/* Side by side they fall to ~159x95 px on a 375 px screen, which is unreadable. */
+@media (max-width: 720px) {
+  .landing-videos { grid-template-columns: minmax(0, 1fr); gap: 20px; }
 }
 @media (max-width: 540px) {
   .masthead .inner { gap: 16px; padding: 0 16px; }

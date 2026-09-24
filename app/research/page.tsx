@@ -34,7 +34,7 @@ export default function Research() {
                   {l.label}
                 </a>
               ))}
-              {t.paper && <Link href="/publications">Publication</Link>}
+              {t.paper && <Link href={`/publications#${t.paper}`}>Publication</Link>}
             </div>
           )}
         </article>

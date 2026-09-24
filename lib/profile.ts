@@ -30,6 +30,7 @@ export const researchInterests = [
 ];
 
 export type Publication = {
+  id?: string;
   authors: string;
   title: string;
   venue: string;
@@ -43,6 +44,7 @@ export type Publication = {
 
 export const journalPublications: Publication[] = [
   {
+    id: "jkros-soc-landing",
     authors: "SungJin Noh, JunGee Hong, and Kwang-Ki K. Kim",
     title:
       "Attitude-aware Second-order Conic-constrained Trajectory Optimization for 6-DOF Quadrotor Precision Landing",
@@ -56,15 +58,13 @@ export const journalPublications: Publication[] = [
         href: "https://doi.org/10.7746/jkros.2026.21.1.100",
       },
     ],
-    also: [
-      "Presented at the 21st Korea Robotics Society Annual Conference (KRoC), Pyeongchang, February 2026, under the journal's simultaneous submission option",
-      "Korean patent application pending, Ref. KR07990 / PD26-154-N",
-    ],
+    also: ["Korean patent application pending, Ref. KR07990 / PD26-154-N"],
   },
 ];
 
 export const conferencePublications: Publication[] = [
   {
+    id: "iccas-cstc-ddp",
     authors: "SungJin Noh, Yong-Hee Kim, Yeohosua Kim, and Kwang-Ki K. Kim",
     title:
       "Compound State-Triggered Constrained DDP for Receding-Horizon Quadrotor Landing on a Moving Platform",
@@ -81,6 +81,18 @@ export const conferencePublications: Publication[] = [
       },
     ],
   },
+  {
+    id: "kroc-soc-landing",
+    authors: "SungJin Noh, JunGee Hong, and Kwang-Ki K. Kim",
+    title:
+      "Attitude-Aware Second-Order Conic-Constrained Trajectory Optimization for 6-DOF Quadrotor Precision Landing",
+    venue: "21st Korea Robotics Society Annual Conference (KRoC)",
+    detail: "Pyeongchang, Republic of Korea \u00b7 February 2026",
+    year: 2026,
+    also: [
+      "Presented under the society's simultaneous submission option; the full paper appears in the Journal of Korea Robotics Society",
+    ],
+  },
 ];
 
 export const inPreparation: Publication[] = [];
@@ -95,7 +107,7 @@ export type ResearchThread = {
   approach: string;
   scale?: string;
   links: ResearchLink[];
-  paper?: boolean;
+  paper?: string;
 };
 
 export const research: ResearchThread[] = [
@@ -108,7 +120,7 @@ export const research: ResearchThread[] = [
     approach:
       "The trigger is written as a compound state-triggered constraint whose violation is integrated as a continuous-time accumulator, so the cone binds only inside the approach region.",
     links: [],
-    paper: true,
+    paper: "iccas-cstc-ddp",
   },
   {
     id: "soc-landing",
@@ -119,7 +131,7 @@ export const research: ResearchThread[] = [
     approach:
       "Both are kept in exact SOC form over a quaternion attitude representation. Flown on a Crazyflie 2.1 with Lighthouse positioning.",
     links: [],
-    paper: true,
+    paper: "jkros-soc-landing",
   },
   {
     id: "ros-wrapper",

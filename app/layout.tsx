@@ -5,9 +5,9 @@ import { profile } from "@/lib/profile";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Sungjin Noh",
+  title: "SungJin Noh",
   description:
-    "Sungjin Noh — M.S. student, Computational Robotics and Autonomy Lab, Inha University. Trajectory optimization and numerical optimal control.",
+    "SungJin Noh — M.S. student, Computational Robotics and Autonomy Lab, Inha University. Trajectory optimization and numerical optimal control.",
 };
 
 export default function RootLayout({

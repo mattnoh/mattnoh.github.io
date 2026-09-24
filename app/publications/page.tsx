@@ -7,7 +7,7 @@ import {
 
 function Ref({ pub }: { pub: Publication }) {
   return (
-    <div className="ref">
+    <div className="ref" id={pub.id}>
       <div className="ryear">{pub.year}</div>
       <div className="rthumbcell">
         {pub.thumb && (
