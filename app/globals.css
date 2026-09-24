@@ -614,7 +614,6 @@ h2.grp {
    or two words; `balance` evens the lines of a heading, which is only sane on
    short text. Ignored by browsers that do not support it. */
 p,
-figcaption,
 .ref .rt,
 .ref .ra,
 .ref .rv,
@@ -623,7 +622,9 @@ figcaption,
   text-wrap: pretty;
 }
 
-h1, h2, h3, .ph, .thread h2 {
+h1, h2, h3, .ph, .thread h2,
+.landing-videos figcaption,
+.figure figcaption {
   text-wrap: balance;
 }
 

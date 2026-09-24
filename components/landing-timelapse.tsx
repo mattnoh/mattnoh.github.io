@@ -7,8 +7,8 @@ export default function LandingTimelapse() {
           src="/media/landing/circle/timelapse.mp4"
           aria-label="Circular-motion quadrotor landing timelapse" />
         <figcaption>
-          <b>Circular target motion.</b> The ground vehicle drives a circle
-          while the quadrotor closes in and lands on it.
+          <b>Circular target motion.</b> The quadrotor tracks a vehicle
+          driving a circle and lands on it.
         </figcaption>
       </div>
       <div className="lv-item">
