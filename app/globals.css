@@ -28,6 +28,17 @@
   --ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
         Arial, sans-serif;
 
+  /* One vertical scale. Every margin below is a step on it, so the page has a
+     rhythm instead of the 3/4/5/6/7/9/10/14/18/26/34/40/56 px it grew into. */
+  --s1: 4px;
+  --s2: 8px;
+  --s3: 12px;
+  --s4: 16px;
+  --s5: 24px;
+  --s6: 32px;
+  --s7: 48px;
+  --s8: 72px;
+
   --nav-h: 70px;
   --side-w: 205px;
   --shell: 1500px;
@@ -68,24 +79,15 @@ body {
 .masthead .inner {
   max-width: var(--shell);
   margin: 0 auto;
-  padding: 0 24px;
+  padding: 0 var(--s5);
   height: 100%;
   display: flex;
   align-items: center;
-  gap: 40px;
-}
-
-.masthead .me {
-  font-weight: 700;
-  font-size: 1.05rem;
-  color: var(--text);
-  text-decoration: none;
-  margin-right: 12px;
 }
 
 .masthead nav {
   display: flex;
-  gap: 28px;
+  gap: var(--s6);
   font-size: 0.95rem;
 }
 
@@ -103,37 +105,37 @@ body {
   width: 100%;
   max-width: var(--shell);
   margin: 0 auto;
-  padding: 36px 24px 80px;
+  padding: var(--s6) var(--s5) var(--s8);
   display: grid;
   grid-template-columns: var(--side-w) minmax(0, 1fr);
-  gap: 40px;
+  gap: var(--s7);
   align-items: start;
 }
 
 /* ---- author sidebar ----------------------------------------------------- */
 
-.author { position: sticky; top: calc(var(--nav-h) + 28px); }
+.author { position: sticky; top: calc(var(--nav-h) + var(--s5)); }
 
 .author .avatar {
-  width: 160px;
-  height: 160px;
+  width: 148px;
+  height: 148px;
   border-radius: 50%;
   object-fit: cover;
   display: block;
-  margin-bottom: 14px;
+  margin-bottom: var(--s4);
 }
 
 .author .nm {
   font-weight: 700;
   font-size: 1.125rem;
-  margin: 0 0 8px;
+  margin: 0 0 var(--s2);
 }
 
 .author .role {
   font-size: 0.875rem;    /* 14px */
   line-height: 1.5;
   color: var(--dim);
-  margin: 0 0 18px;
+  margin: 0 0 var(--s5);
 }
 
 .author ul {
@@ -146,9 +148,9 @@ body {
 
 .author li {
   display: flex;
-  gap: 10px;
+  gap: var(--s3);
   align-items: baseline;
-  margin-bottom: 9px;
+  margin-bottom: var(--s2);
   color: var(--text);
 }
 
@@ -163,16 +165,45 @@ body {
 .author li a { color: var(--text); text-decoration: none; }
 .author li a:hover { color: var(--link); text-decoration: underline; }
 
+/* Below the two-column break the identity stops being a sidebar and becomes a
+   band: portrait beside the name, contacts on one line, a rule closing it. */
 @media (max-width: 900px) {
-  .shell { grid-template-columns: 1fr; gap: 32px; }
-  .author { position: static; }
-  .author .avatar { width: 128px; height: 128px; }
+  .shell { grid-template-columns: 1fr; gap: var(--s6); padding-top: var(--s5); }
+
+  .author {
+    position: static;
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    column-gap: var(--s5);
+    align-items: center;
+    padding-bottom: var(--s5);
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .author .avatar { width: 96px; height: 96px; margin: 0; }
+  .author .nm { margin-bottom: var(--s1); }
+  .author .role { margin-bottom: var(--s3); }
+
+  .author ul {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--s4);
+    row-gap: var(--s2);
+  }
+
+  .author li { margin-bottom: 0; }
+
+  .masthead .inner { padding: 0 var(--s5); }
+  .masthead nav { gap: var(--s5); }
 }
 
-/* On a phone the whole profile sits above every page, so shrink it. */
 @media (max-width: 560px) {
-  .shell { gap: 24px; padding: 24px 18px 64px; }
-  .author .avatar { width: 84px; height: 84px; }
+  .shell { padding: var(--s5) var(--s4) var(--s7); }
+  .author { grid-template-columns: 72px minmax(0, 1fr); column-gap: var(--s4); }
+  .author .avatar { width: 72px; height: 72px; }
+  .author .role { font-size: 0.8125rem; }
+  .masthead .inner { padding: 0 var(--s4); }
+  .masthead nav { gap: var(--s4); font-size: 0.875rem; }
 }
 
 /* ---- content ------------------------------------------------------------ */
@@ -183,7 +214,7 @@ h1 {
   font-size: 1.5625rem;   /* 28.1px, matching the reference */
   font-weight: 700;
   line-height: 1.3;
-  margin: 0 0 14px;
+  margin: 0 0 var(--s4);
   color: var(--text);
 }
 
@@ -193,35 +224,35 @@ h2 {
   font-size: 1.25rem;
   font-weight: 700;
   line-height: 1.35;
-  margin: 34px 0 10px;
+  margin: var(--s6) 0 var(--s3);
   color: var(--text);
 }
 
 h3 {
   font-size: 1.0625rem;
   font-weight: 700;
-  margin: 0 0 4px;
+  margin: 0 0 var(--s1);
   color: var(--text);
 }
 
-p { margin: 0 0 14px; }
+p { margin: 0 0 var(--s4); }
 p:last-child { margin-bottom: 0; }
 
 a { color: var(--link); text-decoration: underline; text-underline-offset: 0.15em; }
 a:hover { color: var(--text); }
 
-ul.plain { margin: 0 0 14px; padding-left: 1.4rem; }
-ul.plain li { margin-bottom: 7px; }
-ul.plain ul { margin: 7px 0 0; padding-left: 1.4rem; list-style: circle; }
+ul.plain { margin: 0 0 var(--s4); padding-left: 1.4rem; }
+ul.plain li { margin-bottom: var(--s2); }
+ul.plain ul { margin: var(--s2) 0 0; padding-left: 1.4rem; list-style: circle; }
 
-hr.sep { border: 0; border-top: 1px solid var(--rule); margin: 40px 0; }
+hr.sep { border: 0; border-top: 1px solid var(--rule); margin: var(--s7) 0; }
 
 /* ---- nav active state --------------------------------------------------- */
 
 .masthead nav a.on {
   color: var(--text);
   border-bottom: 2px solid var(--accent);
-  padding-bottom: 3px;
+  padding-bottom: var(--s1);
 }
 
 /* ---- page heading ------------------------------------------------------- */
@@ -231,7 +262,7 @@ hr.sep { border: 0; border-top: 1px solid var(--rule); margin: 40px 0; }
   font-weight: 700;
   line-height: 1.22;
   letter-spacing: -0.012em;
-  margin: 0 0 20px;
+  margin: 0 0 var(--s5);
   color: var(--text);
 }
 
@@ -239,7 +270,7 @@ hr.sep { border: 0; border-top: 1px solid var(--rule); margin: 40px 0; }
 
 /* ---- the figure at the top ---------------------------------------------- */
 
-.figure { margin: 0 0 26px; }
+.figure { margin: 0 0 var(--s6); }
 
 .figure video,
 .figure img {
@@ -250,7 +281,7 @@ hr.sep { border: 0; border-top: 1px solid var(--rule); margin: 40px 0; }
 }
 
 .figure figcaption {
-  margin-top: 10px;
+  margin-top: var(--s3);
   font-size: 0.875rem;
   color: var(--dim);
   text-align: center;
@@ -261,8 +292,8 @@ hr.sep { border: 0; border-top: 1px solid var(--rule); margin: 40px 0; }
 .clips {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin: 0 0 10px;
+  gap: var(--s3);
+  margin: 0 0 var(--s3);
 }
 
 .clips video {
@@ -275,7 +306,7 @@ hr.sep { border: 0; border-top: 1px solid var(--rule); margin: 40px 0; }
 .clips .cap {
   font-size: 0.8125rem;
   color: var(--faint);
-  margin-top: 4px;
+  margin-top: var(--s1);
 }
 
 @media (max-width: 640px) {
@@ -284,55 +315,42 @@ hr.sep { border: 0; border-top: 1px solid var(--rule); margin: 40px 0; }
 
 /* ---- research threads --------------------------------------------------- */
 
-.thread h2 { margin-top: 0; margin-bottom: 4px; }
+.thread h2 { margin-top: 0; margin-bottom: var(--s1); }
 
 .thread .kind {
   font-size: 0.8125rem;
   letter-spacing: 0.09em;
   text-transform: uppercase;
   color: var(--accent);
-  margin-bottom: 5px;
+  margin-bottom: var(--s1);
 }
 
 .thread .tscale {
   font-size: 0.875rem;
   color: var(--faint);
-  margin-top: -4px;
+  margin-top: calc(var(--s1) * -1);
 }
 
 /* the problem statement is set apart from the approach */
 .thread .tprob {
   border-left: 2px solid var(--rule);
-  padding-left: 16px;
+  padding-left: var(--s4);
   color: var(--dim);
 }
 
 .thread .tlinks {
-  margin-top: 14px;
+  margin-top: var(--s4);
   display: flex;
-  gap: 10px;
+  gap: var(--s2);
   flex-wrap: wrap;
-}
-
-.thread .tlinks a {
-  font-size: 0.875rem;
-  color: var(--dim);
-  text-decoration: none;
-  border: 1px solid var(--rule);
-  padding: 5px 12px;
-}
-
-.thread .tlinks a:hover {
-  border-color: var(--accent);
-  color: var(--accent);
 }
 
 /* ---- references --------------------------------------------------------- */
 
 /* group titles get a rule so they read as headings, not as bold lines */
 h2.grp {
-  padding-bottom: 7px;
-  margin-bottom: 16px;
+  padding-bottom: var(--s2);
+  margin-bottom: var(--s4);
   border-bottom: 1px solid var(--rule);
 }
 
@@ -340,15 +358,15 @@ h2.grp {
 .ref {
   display: grid;
   grid-template-columns: 2.9rem 124px minmax(0, 1fr);
-  column-gap: 18px;
-  margin: 0 0 26px;
+  column-gap: var(--s5);
+  margin: 0 0 var(--s6);
 }
 
 .ref .ryear {
   font-size: 0.9375rem;
   color: var(--faint);
   line-height: 1.4;
-  padding-top: 1px;
+  padding-top: var(--s1);
   font-feature-settings: "tnum";
 }
 
@@ -364,48 +382,61 @@ h2.grp {
 .ref:hover .rthumb { border-color: var(--accent); }
 
 @media (max-width: 620px) {
-  .ref { grid-template-columns: 2.6rem 88px minmax(0, 1fr); column-gap: 12px; }
+  .ref { grid-template-columns: 2.6rem 88px minmax(0, 1fr); column-gap: var(--s3); }
 }
 
 /* Below this the text column is squeezed under ~175 px and titles shred. */
 @media (max-width: 560px) {
-  .ref { grid-template-columns: minmax(0, 1fr); row-gap: 5px; }
+  .ref { grid-template-columns: minmax(0, 1fr); row-gap: var(--s1); }
   .ref .rthumbcell { display: none; }
 }
 /* The masthead is sticky, so an anchored entry must clear it. */
-.ref[id] { scroll-margin-top: calc(var(--nav-h) + 24px); }
+.ref[id] { scroll-margin-top: calc(var(--nav-h) + var(--s5)); }
 .ref[id]:target .rt { box-shadow: inset 0 -0.6em 0 var(--mark, rgba(255, 214, 0, 0.28)); }
 
 .ref .rt { font-weight: 700; line-height: 1.4; }
 .ref .ra, .ref .rv { font-size: 0.9375rem; color: var(--dim); line-height: 1.5; }
 .ref .rv em { font-style: italic; }
 .ref .also {
-  margin: 6px 0 0;
+  margin: var(--s2) 0 0;
   padding-left: 1.1rem;
   font-size: 0.875rem;
   color: var(--faint);
   line-height: 1.5;
 }
 
-.ref .also li { margin-bottom: 3px; }
+.ref .also li { margin-bottom: var(--s1); }
 
 .rlinks {
-  margin-top: 7px;
+  margin-top: var(--s3);
   display: flex;
-  gap: 8px;
+  gap: var(--s2);
   flex-wrap: wrap;
 }
 
-.rlinks a {
+/* Two action shapes only: a resource chip (DOI, Project page, GitHub,
+   Publication) and the one primary action (.dl). Same geometry, so the
+   difference between them reads as intent rather than as drift. */
+.rlinks a,
+.thread .tlinks a,
+.dl {
   font-size: 0.875rem;
-  color: var(--dim);
+  line-height: 1.4;
   text-decoration: none;
   border: 1px solid var(--rule);
-  padding: 3px 10px;
+  padding: var(--s1) var(--s3);
+  white-space: nowrap;
   transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
 }
 
-.rlinks a:hover {
+.rlinks a,
+.thread .tlinks a { color: var(--dim); }
+
+.dl { color: var(--accent); border-color: var(--accent); }
+
+.rlinks a:hover,
+.thread .tlinks a:hover,
+.dl:hover {
   background: var(--accent);
   border-color: var(--accent);
   color: var(--ground);
@@ -413,31 +444,23 @@ h2.grp {
 
 .ref .tag {
   display: inline-block;
-  margin-top: 4px;
+  margin-top: var(--s2);
   font-size: 0.8125rem;
   color: var(--accent);
 }
 
 /* ---- cv page ------------------------------------------------------------ */
 
+.cvhead h1 { margin: 0; }
+
 .cvhead {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
-  gap: 24px;
-  margin-bottom: 18px;
+  gap: var(--s5);
+  margin-bottom: var(--s5);
 }
 
-.dl {
-  font-size: 0.875rem;
-  color: var(--accent);
-  text-decoration: none;
-  border: 1px solid var(--rule);
-  padding: 7px 14px;
-  white-space: nowrap;
-}
-
-.dl:hover { border-color: var(--accent); color: var(--accent); }
 
 .cvframe {
   width: 100%;
@@ -450,7 +473,7 @@ h2.grp {
 
 /* ---- compact rows ------------------------------------------------------- */
 
-.row { margin: 0 0 16px; }
+.row { margin: 0 0 var(--s4); }
 .row .d { font-size: 0.9375rem; color: var(--dim); }
 
 /* ---- footer ------------------------------------------------------------- */
@@ -458,13 +481,13 @@ h2.grp {
 .foot {
   flex-shrink: 0;
   border-top: 1px solid var(--rule);
-  margin-top: 56px;
-  padding: 22px 0 28px;
+  margin-top: var(--s8);
+  padding: var(--s5) 0 var(--s5);
   font-size: 0.875rem;
   color: var(--faint);
 }
 
-.foot .inner { max-width: var(--shell); margin: 0 auto; padding: 0 24px; }
+.foot .inner { max-width: var(--shell); margin: 0 auto; padding: 0 var(--s5); }
 
 /* ==========================================================================
    Motion. Everything here is CSS-only, respects prefers-reduced-motion,
@@ -487,7 +510,7 @@ h2.grp {
 /* 2. Nav underline grows from the left rather than blinking on */
 .masthead nav a {
   position: relative;
-  padding-bottom: 4px;
+  padding-bottom: var(--s1);
   border-bottom: none;
 }
 
@@ -539,8 +562,8 @@ h2.grp {
 
 /* 5. Research entries respond to the pointer */
 .thread {
-  padding-left: 14px;
-  margin-left: -14px;
+  padding-left: var(--s4);
+  margin-left: calc(var(--s4) * -1);
   border-left: 2px solid transparent;
   transition: border-color 200ms ease;
 }
@@ -550,16 +573,6 @@ h2.grp {
 .thread .tprob { transition: border-color 200ms ease; }
 
 /* 6. The link chips fill rather than just change colour */
-.thread .tlinks a {
-  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
-}
-
-.thread .tlinks a:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--ground);
-}
-
 /* honour the system setting */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
@@ -576,8 +589,8 @@ h2.grp {
 .landing-videos {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px 10px;
-  margin: 0 0 30px;
+  gap: var(--s4) var(--s3);
+  margin: 0 0 var(--s6);
   width: 100%;
   max-width: 1220px;   /* keeps them from ballooning on a wide screen */
 }
@@ -591,7 +604,7 @@ h2.grp {
 }
 
 .landing-videos .lv-item figcaption {
-  margin-top: 7px;
+  margin-top: var(--s2);
   font-size: 0.875rem;
   line-height: 1.5;
   color: var(--dim);
@@ -600,13 +613,9 @@ h2.grp {
 
 /* Side by side they fall to ~159x95 px on a 375 px screen, which is unreadable. */
 @media (max-width: 720px) {
-  .landing-videos { grid-template-columns: minmax(0, 1fr); gap: 20px; }
+  .landing-videos { grid-template-columns: minmax(0, 1fr); gap: var(--s5); }
 }
-@media (max-width: 540px) {
-  .masthead .inner { gap: 16px; padding: 0 16px; }
-  .masthead .me { margin-right: 0; font-size: .875rem; }
-  .masthead nav { gap: 14px; font-size: .8125rem; }
-}
+
 
 /* ---- small text runs on the UI stack ------------------------------------ */
 

@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Nav from "@/components/nav";
 import { profile } from "@/lib/profile";
 import "./globals.css";
@@ -20,9 +19,6 @@ export default function RootLayout({
       <body>
         <header className="masthead">
           <div className="inner">
-            <Link className="me" href="/">
-              {profile.name}
-            </Link>
             <Nav />
           </div>
         </header>
@@ -30,6 +26,7 @@ export default function RootLayout({
         <div className="shell">
           <aside className="author">
             <img className="avatar" src="/profile.jpg" alt={profile.name} />
+            <div className="idcard">
             <div className="nm">{profile.name}</div>
             <p className="role">
               M.S. student, Computational Robotics and Autonomy Lab,
@@ -65,6 +62,7 @@ export default function RootLayout({
                 </a>
               </li>
             </ul>
+            </div>
           </aside>
 
           <main className="content">{children}</main>

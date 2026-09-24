@@ -4,7 +4,7 @@ export default function CV() {
   return (
     <>
       <div className="cvhead">
-        <h1 className="ph" style={{ margin: 0 }}>
+        <h1 className="ph">
           CV
         </h1>
         <a className="dl" href={profile.cvPath} download>
