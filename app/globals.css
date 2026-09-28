@@ -420,33 +420,49 @@ h2.grp {
   flex-wrap: wrap;
 }
 
-/* Two action shapes only: a resource chip (DOI, Project page, GitHub,
-   Publication) and the one primary action (.dl). Same geometry, so the
-   difference between them reads as intent rather than as drift. */
+/* Three tiers, not three boxes. Prose links are underlined text; resource
+   links (DOI, Project page, GitHub, Publication) are text separated by a
+   middot; and Download PDF is the only bordered thing on the site, so the one
+   real action is the one that looks like one. */
 .rlinks a,
-.thread .tlinks a,
+.thread .tlinks a {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  color: var(--dim);
+  text-decoration: underline;
+  text-decoration-color: var(--rule);
+  text-underline-offset: 0.2em;
+  white-space: nowrap;
+  transition: color 160ms ease, text-decoration-color 160ms ease;
+}
+
+.rlinks a:hover,
+.thread .tlinks a:hover {
+  color: var(--accent);
+  text-decoration-color: var(--accent);
+}
+
+.rlinks a:not(:last-child)::after,
+.thread .tlinks a:not(:last-child)::after {
+  content: "·";
+  color: var(--faint);
+  margin-left: var(--s2);
+  text-decoration: none;
+  display: inline-block;
+}
+
 .dl {
   font-size: 0.875rem;
   line-height: 1.4;
+  color: var(--accent);
   text-decoration: none;
-  border: 1px solid var(--rule);
+  border: 1px solid var(--accent);
   padding: var(--s1) var(--s3);
   white-space: nowrap;
-  transition: background-color 160ms ease, border-color 160ms ease, color 160ms ease;
+  transition: background-color 160ms ease, color 160ms ease;
 }
 
-.rlinks a,
-.thread .tlinks a { color: var(--dim); }
-
-.dl { color: var(--accent); border-color: var(--accent); }
-
-.rlinks a:hover,
-.thread .tlinks a:hover,
-.dl:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: var(--ground);
-}
+.dl:hover { background: var(--accent); color: var(--ground); }
 
 .ref .tag {
   display: inline-block;
