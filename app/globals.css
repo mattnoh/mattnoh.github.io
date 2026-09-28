@@ -468,6 +468,22 @@ h2.grp {
 }
 
 
+/* The <object> fallback only fires when the file fails to load. On a phone it
+   loads and then renders nothing, so the embed is swapped for page images
+   instead of being left as a tall white rectangle. */
+.cvpages { display: none; }
+
+@media (max-width: 900px) {
+  .cvframe { display: none; }
+  .cvpages { display: grid; gap: var(--s4); }
+  .cvpages img {
+    width: 100%;
+    display: block;
+    border: 1px solid var(--rule);
+    background: #fff;
+  }
+}
+
 .cvframe {
   width: 100%;
   height: 78vh;
